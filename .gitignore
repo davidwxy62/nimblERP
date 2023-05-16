@@ -1,6 +1,8 @@
 # Others
 .DS_Store
 *.pem
+bin/ssh_server
+var
 
 # Logs
 logs

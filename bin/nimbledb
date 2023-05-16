@@ -1,0 +1,45 @@
+#!/bin/bash
+# stop on errors
+set -Eeuo pipefail
+
+# sanity check command line options
+usage() {
+  echo "Usage: $0 (create|destroy|reset|dump)"
+}
+if [ $# -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+# process command line options
+case $1 in
+  "create")
+    if [ $(psql -U postgres -c '\l' | grep nimbledb) ]; then
+      echo "Error: database nimbledb already exists. Try reset instead."
+      exit 0
+    fi
+    createdb nimbledb
+    psql -U davidwang -d nimbledb -f psql/schema.sql
+    psql -U davidwang -d nimbledb -f psql/data.sql
+    ;;
+
+  "destroy")
+    dropdb nimbledb
+    ;;
+
+  "reset")
+    dropdb nimbledb
+    createdb nimbledb
+    psql -U davidwang -d nimbledb -f psql/schema.sql
+    psql -U davidwang -d nimbledb -f psql/data.sql
+    ;;
+
+  "dump")
+    pg_dumpall --file=var/backup.sql --database=nimbledb
+    ;;
+
+  *)
+    usage
+    exit 1
+    ;;
+esac
