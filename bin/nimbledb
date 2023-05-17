@@ -19,23 +19,23 @@ case $1 in
       exit 0
     fi
     createdb nimbledb
-    psql -U davidwang -d nimbledb -f psql/schema.sql
-    psql -U davidwang -d nimbledb -f psql/data.sql
+    echo "Success: created database nimbledb"
     ;;
 
   "destroy")
     dropdb nimbledb
+    echo "Success: destroyed database nimbledb"
     ;;
 
   "reset")
     dropdb nimbledb
     createdb nimbledb
-    psql -U davidwang -d nimbledb -f psql/schema.sql
-    psql -U davidwang -d nimbledb -f psql/data.sql
+    echo "Success: reset database nimbledb"
     ;;
 
   "dump")
     pg_dumpall --file=var/backup.sql --database=nimbledb
+    echo "Success: dumped database nimbledb to var/backup.sql"
     ;;
 
   *)

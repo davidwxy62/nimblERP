@@ -1,25 +1,25 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.mjs";
 
-class Drawing extends Model {}
+class VendingOrder extends Model {}
 
-Drawing.init({
+VendingOrder.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    routing_table_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    drawing_number: {
+    order_number: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    price_table: {
-        type: DataTypes.TEXT,
+    PO_number: {
+        type: DataTypes.STRING(20),
         allowNull: false
+    },
+    vendor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     },
     creation_date: {
         type: DataTypes.DATE,
@@ -39,18 +39,19 @@ Drawing.init({
     }
 }, {
     sequelize,
-    modelName: 'Drawing'
+    modelName: 'VendingOrder',
+    timestamps: false
 });
 
-Drawing.associate = (models) => {
-    Drawing.belongsTo(models.RoutingTable, {
-        foreignKey: 'routing_table_id',
+VendingOrder.associate = (models) => {
+    VendingOrder.belongsTo(models.Vendor, {
+        foreignKey: 'vendor_id',
         onDelete: 'RESTRICT'
     });
-    Drawing.hasMany(models.Part, {
-        foreignKey: 'drawing_id',
-        onDelete: 'RESTRICT'
+    VendingOrder.hasMany(models.Part, {
+        foreignKey: 'vending_order_id',
+        onDelete: 'SET NULL'
     });
-};
+}
 
-export default Drawing;
+export default VendingOrder;

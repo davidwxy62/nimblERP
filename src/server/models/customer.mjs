@@ -1,20 +1,24 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, HasMany } from 'sequelize';
 import sequelize from "../config/database.mjs";
 
-class User extends Model {}
+class Customer extends Model {}
 
-User.init({
+Customer.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    username: {
+    name: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+    },
+    code: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    password: {
-        type: DataTypes.STRING(161),
+    address: {
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     email: {
@@ -25,17 +29,21 @@ User.init({
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    name: {
+    sales_rep: {
         type: DataTypes.STRING(20),
-        allowNull: false
-    },
-    auth_level: {
-        type: DataTypes.INTEGER,
         allowNull: false
     }
 }, {
     sequelize,
-    modelName: 'User'
+    modelName: 'Customer',
+    timestamps: false
 });
 
-export default User;
+Customer.associate = (models) => {
+    Customer.hasMany(models.Order, {
+        foreignKey: 'customer_id',
+        onDelete: 'RESTRICT'
+    });
+};
+
+export default Customer;

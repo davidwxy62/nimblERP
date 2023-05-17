@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.mjs";
 
-class VendingOrder extends Model {}
+class Order extends Model {}
 
-VendingOrder.init({
+Order.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,7 +17,7 @@ VendingOrder.init({
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    vendor_id: {
+    customer_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -39,18 +39,21 @@ VendingOrder.init({
     }
 }, {
     sequelize,
-    modelName: 'VendingOrder'
+    modelName: 'Order',
+    timestamps: false
 });
 
-VendingOrder.associate = (models) => {
-    VendingOrder.belongsTo(models.Vendor, {
-        foreignKey: 'vendor_id',
+Order.associate = (models) => {
+    Order.belongsTo(models.Customer, {
+        foreignKey: 'customer_id',
         onDelete: 'RESTRICT'
     });
-    VendingOrder.hasMany(models.Part, {
-        foreignKey: 'vending_order_id',
+    Order.hasMany(models.Part, {
+        foreignKey: 'order_id',
         onDelete: 'SET NULL'
     });
-}
+};
 
-export default VendingOrder;
+    
+
+export default Order;

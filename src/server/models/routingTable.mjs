@@ -15,7 +15,8 @@ RoutingTable.init({
     }
 }, {
     sequelize,
-    modelName: 'RoutingTable'
+    modelName: 'RoutingTable',
+    timestamps: false
 });
 
 RoutingTable.associate = (models) => {
