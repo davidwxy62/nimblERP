@@ -39,8 +39,7 @@ Order.init({
     }
 }, {
     sequelize,
-    modelName: 'Order',
-    timestamps: false
+    modelName: 'Order'
 });
 
 Order.associate = (models) => {

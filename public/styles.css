@@ -1,0 +1,10 @@
+#logo {
+    width: 300px;
+    height: auto;
+}
+
+#logged_in_user {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: Tahoma;
+}

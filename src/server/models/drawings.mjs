@@ -39,8 +39,7 @@ Drawing.init({
     }
 }, {
     sequelize,
-    modelName: 'Drawing',
-    timestamps: false
+    modelName: 'Drawing'
 });
 
 Drawing.associate = (models) => {

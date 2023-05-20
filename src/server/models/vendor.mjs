@@ -31,8 +31,7 @@ Vendor.init({
     }
 }, {
     sequelize,
-    modelName: 'Vendor',
-    timestamps: false
+    modelName: 'Vendor'
 });
 
 Vendor.associate = (models) => {

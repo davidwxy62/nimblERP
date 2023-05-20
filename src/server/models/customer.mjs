@@ -35,8 +35,7 @@ Customer.init({
     }
 }, {
     sequelize,
-    modelName: 'Customer',
-    timestamps: false
+    modelName: 'Customer'
 });
 
 Customer.associate = (models) => {

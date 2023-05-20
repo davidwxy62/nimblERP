@@ -51,8 +51,7 @@ Part.init({
     }
 }, {
     sequelize,
-    modelName: 'Part',
-    timestamps: false
+    modelName: 'Part'
 });
 
 Part.associate = (models) => {

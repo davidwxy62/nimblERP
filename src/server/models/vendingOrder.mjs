@@ -39,8 +39,7 @@ VendingOrder.init({
     }
 }, {
     sequelize,
-    modelName: 'VendingOrder',
-    timestamps: false
+    modelName: 'VendingOrder'
 });
 
 VendingOrder.associate = (models) => {
