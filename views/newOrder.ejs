@@ -1,0 +1,26 @@
+<%- include('header') %>
+<div class="container w-75">
+  <div class="row mt-4">
+    <div class="col-4">
+      <label for="order_number_input" class="form-label">Order Number</label>
+      <input type="text" class="form-control" id="order_number_input" />
+    </div>
+    <div class="col-4">
+      <label for="PO_number_input" class="form-label">P.O. Number</label>
+      <input type="text" class="form-control" id="PO_number_input" />
+    </div>
+    <div class="col-4">
+      <label for="customer" class="form-label">Customer</label>
+      <input type="text" class="form-control" id="order_number_input" />
+    </div>
+  </div>
+  <div id="partsTable_root" class="mt-5"></div>
+</div>
+
+<script type="module">
+  import { refreshWarning } from "/util.mjs";
+  refreshWarning();
+</script>
+
+<script src="/bundle.js"></script>
+<%- include('footer') %>

@@ -1,27 +1,27 @@
-import User from "./user.mjs";
-import RoutingTable from "./routingTable.mjs";
-import Drawing from "./drawings.mjs";
-import Part from "./part.mjs";
-import Customer from "./customer.mjs";
-import Order from "./order.mjs";
-import Vendor from "./vendor.mjs";
-import VendingOrder from "./vendingOrder.mjs";
+import User from "./userModel.mjs";
+import RoutingTable from "./routingTableModel.mjs";
+import Drawing from "./drawingModel.mjs";
+import Part from "./partModel.mjs";
+import Customer from "./customerModel.mjs";
+import Order from "./orderModel.mjs";
+import Vendor from "./vendorModel.mjs";
+import VendingOrder from "./vendingOrderModel.mjs";
 
 const models = {
-    User,
-    RoutingTable,
-    Drawing,
-    Part,
-    Customer,
-    Order,
-    Vendor,
-    VendingOrder
+  User,
+  RoutingTable,
+  Drawing,
+  Part,
+  Customer,
+  Order,
+  Vendor,
+  VendingOrder,
 };
 
 Object.keys(models).forEach((modelName) => {
-    if ('associate' in models[modelName]) {
-        models[modelName].associate(models);
-    }
+  if ("associate" in models[modelName]) {
+    models[modelName].associate(models);
+  }
 });
 
 export default models;
